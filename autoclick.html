@@ -1,53 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <title>自动点击</title>
     <style>
     body {background-color: #F1FCF3;}
-    a {color:#597A6C;}
+    a {color:#597A6C;font-size:26px;text-decoration:none;;margin:10px}
     a:hover {color:#2B3B34;}
+    p {font-size:26px;word-break:break-all;margin:10px}
     </style>
+    <p style="font-size: 50px;"><a href="./index"><</a>自动点击</p>
 </head>
-<body>
-<a href="index.html" style="text-decoration: none;"><</a>
-<font size="8"><b>自动点击</b></font>
-<pre>from pyautogui import *
-import keyboard
-import threading
-import ctypes,sys
-s=0
-def main():
-    global s
-    while 1:
-        if s:
-            mouseDown()
-            sleep(0.01)
-            mouseUp()
-        sleep(0.1)
-def service():
-    global s
-    while 1:
-        if keyboard.is_pressed('p'):
-            s=1-s
-            sleep(0.3)
-        sleep(0.01)
-def is_admin():
-    try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except:
-        return None
-if is_admin():
-    a = threading.Thread(target=main)
-    b = threading.Thread(target=service)
-    a.start()
-    b.start()
-else:
-    ctypes.windll.shell32.ShellExecuteW(None,u'runas',sys.executable,__file__,None,1)
-</pre>
-<h2>安装</h2>
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyautogui<br>
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple keyboard<br><br>
-<a href="./index.html" style="text-decoration: none;">返回</a> <a href="https://github.com/xjyzs" style="text-decoration: none;">Github</a>
-</body>
-</html>
+<a href='./res/hkrpg_clicker.py'>点击下载</a>
+<p>from&nbsppyautogui&nbspimport&nbsp*</p>
+<p>import&nbspkeyboard</p>
+<p>import&nbspthreading</p>
+<p>import&nbspctypes,sys</p>
+<p>s=0</p>
+<p>def&nbspmain():</p>
+<p>&nbsp&nbsp&nbsp&nbspglobal&nbsps</p>
+<p>&nbsp&nbsp&nbsp&nbspwhile&nbsp1:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspif&nbsps:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmouseDown()</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsleep(0.01)</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmouseUp()</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsleep(0.1)</p>
+<p>def&nbspservice():</p>
+<p>&nbsp&nbsp&nbsp&nbspglobal&nbsps</p>
+<p>&nbsp&nbsp&nbsp&nbspwhile&nbsp1:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspif&nbspkeyboard.is_pressed('p'):</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsps=1-s</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsleep(0.3)</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsleep(0.01)</p>
+<p>def&nbspis_admin():</p>
+<p>&nbsp&nbsp&nbsp&nbsptry:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn&nbspctypes.windll.shell32.IsUserAnAdmin()</p>
+<p>&nbsp&nbsp&nbsp&nbspexcept:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn&nbspNone</p>
+<p>if&nbspis_admin():</p>
+<p>&nbsp&nbsp&nbsp&nbspa&nbsp=&nbspthreading.Thread(target=main)</p>
+<p>&nbsp&nbsp&nbsp&nbspb&nbsp=&nbspthreading.Thread(target=service)</p>
+<p>&nbsp&nbsp&nbsp&nbspa.start()</p>
+<p>&nbsp&nbsp&nbsp&nbspb.start()</p>
+<p>else:</p>
+<p>&nbsp&nbsp&nbsp&nbspctypes.windll.shell32.ShellExecuteW(None,u'runas',sys.executable,__file__,None,1)</p>
+<p style="font-size: 42px;">安装</p>
+<p>pip&nbspinstall&nbsp-i&nbsphttps://pypi.tuna.tsinghua.edu.cn/simple&nbsppyautogui</p>
+<p>pip&nbspinstall&nbsp-i&nbsphttps://pypi.tuna.tsinghua.edu.cn/simple&nbspkeyboard</p>
+<p><br></p>
+<a href="./index">返回</a>
