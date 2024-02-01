@@ -1,41 +1,51 @@
+
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <title>崩铁抽卡分析</title>
+    <title>自动点击</title>
     <style>
     body {background-color: #F1FCF3;}
     a {color:#597A6C;font-size:26px;text-decoration:none;;margin:10px}
     a:hover {color:#2B3B34;}
     p {font-size:26px;word-break:break-all;margin:10px}
     </style>
-    <p style="font-size: 50px;"><a href="./index"><</a>崩铁抽卡分析</p>
+    <p style="font-size: 50px;"><a href="./index"><</a>自动点击</p>
 </head>
 <a href='./res/autoclick.py'>点击下载</a>
-<p>import&nbsprequests,re,pandas,time</p>
-<p>end_id='0';count=1;all_cnt=0;gacha=[];gacha_stars=[];gacha5=[];gacha5_count=[];cnt5=0;gacha4=[];gacha4_count=[];cnt4=0;start_time=time.time()</p>
-<p>url=input('粘贴链接，结尾为：size=20&ampgacha_type=任意&ampend_id=（size改为20，end_id后面没有数字）')</p>
-<p>while&nbspcount!=0:</p>
-<p>&nbsp&nbsp&nbsp&nbspresp=requests.get(url+end_id).text</p>
-<p>&nbsp&nbsp&nbsp&nbspitem=re.finditer(r'{"uid":".*?","gacha_id":".*?","gacha_type":".*?","item_id":".*?","count":".*?","time":"(?P&lttime&gt.*?)","name":"(?P&ltname&gt.*?)","lang":".*?","item_type":".*?","rank_type":"(?P&ltrank_type&gt.*?)","id":"(?P&ltid&gt.*?)"}',resp)</p>
-<p>&nbsp&nbsp&nbsp&nbspcount=0</p>
-<p>&nbsp&nbsp&nbsp&nbspfor&nbspj&nbspin&nbspitem:</p>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspgacha.append(j.group('name')+j.group('time'));gacha_stars.append(j.group('rank_type'))</p>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcount+=1</p>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspend_id=j.group('id')</p>
-<p>&nbsp&nbsp&nbsp&nbspall_cnt+=count;print(f'已分析：{all_cnt}抽')</p>
-<p>print(f'共计：{len(gacha)}抽')</p>
-<p>for&nbspi&nbspin&nbsprange(len(gacha)):</p>
-<p>&nbsp&nbsp&nbsp&nbspcnt5+=1;cnt4+=1</p>
-<p>&nbsp&nbsp&nbsp&nbspif&nbspgacha_stars[-i]=='4':</p>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspgacha4_count=[cnt4]+gacha4_count;gacha4=[gacha[-i]]+gacha4</p>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcnt4=0</p>
-<p>&nbsp&nbsp&nbsp&nbspelif&nbspgacha_stars[-i]=='5':</p>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspgacha5_count=[cnt5]+gacha5_count;gacha5=[gacha[-i]]+gacha5</p>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcnt5=0</p>
-<p>df=pandas.DataFrame(['','']+gacha5_count+['','']+gacha4_count+['','']+gacha_stars+['',''],['','5星：']+gacha5+['','4星：']+gacha4+['','所有记录：']+gacha+['',f'共计：{len(gacha)}抽'],columns=['抽数/星级'])</p>
-<p>df.to_excel('gacha.xlsx')</p>
-<p>print(f'分析用时：{time.time()-start_time}s')</p>
+<p>import&nbsppyautogui</p>
+<p>import&nbspkeyboard</p>
+<p>import&nbsptime</p>
+<p>import&nbspctypes,sys,os</p>
+<p>clicking&nbsp=&nbspFalse</p>
+<p><br></p>
+<p>def&nbsptoggle_clicking():</p>
+<p>&nbsp&nbsp&nbsp&nbspglobal&nbspclicking</p>
+<p>&nbsp&nbsp&nbsp&nbspclicking&nbsp=&nbspnot&nbspclicking</p>
+<p>&nbsp&nbsp&nbsp&nbspos.system(f'msg&nbsp%username%&nbsp/time:1&nbspStatus:{clicking}')</p>
+<p><br></p>
+<p>keyboard.on_press_key("p",&nbsplambda&nbsp_:toggle_clicking())</p>
+<p><br></p>
+<p><br></p>
+<p>def&nbspis_admin():</p>
+<p>&nbsp&nbsp&nbsp&nbsptry:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn&nbspctypes.windll.shell32.IsUserAnAdmin()</p>
+<p>&nbsp&nbsp&nbsp&nbspexcept:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn&nbspNone</p>
+<p>if&nbspis_admin():</p>
+<p>&nbsp&nbsp&nbsp&nbspwhile&nbspTrue:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspif&nbspclicking:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsppyautogui.click()</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsptime.sleep(0.1)</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspelse:</p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsptime.sleep(0.5)</p>
+<p>else:</p>
+<p>&nbsp&nbsp&nbsp&nbspctypes.windll.shell32.ShellExecuteW(None,u'runas',sys.executable,__file__,None,1)
+</p>
 
+<p style="font-size: 42px;">安装</p>
+<p>pip&nbspinstall&nbsp-i&nbsphttps://pypi.tuna.tsinghua.edu.cn/simple&nbsppyautogui</p>
+<p>pip&nbspinstall&nbsp-i&nbsphttps://pypi.tuna.tsinghua.edu.cn/simple&nbspkeyboard</p>
 <p><br></p>
 <a href="./index">返回</a>
+
