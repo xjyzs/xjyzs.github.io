@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动点击</title>
+    <style>
+    body {background-color: #F1FCF3;}
+    a {color:#597A6C;}
+    a:hover {color:#2B3B34;}
+    </style>
+</head>
+<body>
+<a href="index.html" style="text-decoration: none;"><</a>
+<font size="8"><b>自动点击</b></font>
+<pre>from pyautogui import *
+import keyboard
+import threading
+import ctypes,sys
+s=0
+def main():
+    global s
+    while 1:
+        if s:
+            mouseDown()
+            sleep(0.01)
+            mouseUp()
+        sleep(0.1)
+def service():
+    global s
+    while 1:
+        if keyboard.is_pressed('p'):
+            s=1-s
+            sleep(0.3)
+        sleep(0.01)
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return None
+if is_admin():
+    a = threading.Thread(target=main)
+    b = threading.Thread(target=service)
+    a.start()
+    b.start()
+else:
+    ctypes.windll.shell32.ShellExecuteW(None,u'runas',sys.executable,__file__,None,1)
+</pre>
+<h2>安装</h2>
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyautogui<br>
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple keyboard<br><br>
+<a href="./index.html" style="text-decoration: none;">返回</a> <a href="https://github.com/mx287203" style="text-decoration: none;">Github</a>
+</body>
+</html>
