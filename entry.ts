@@ -77,6 +77,8 @@ function getContentType(fileName: string): string {
       return "image/gif";
     case "txt":
       return "text/plain";
+    case "svg":
+      return "image/svg+xml";
     default:
       return "application/octet-stream";
   }
