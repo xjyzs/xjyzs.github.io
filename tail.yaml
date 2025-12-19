@@ -30,7 +30,7 @@
       - 🚀 节点选择
       - DIRECT
 
-  - name:Ⓜ️ 微软服务
+  - name: Ⓜ️ 微软服务
     type: select
     proxies:
       - DIRECT
