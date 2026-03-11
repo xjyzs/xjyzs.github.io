@@ -72,6 +72,7 @@
       - 🚀 节点选择
       - DIRECT
 rules:
+  - DOMAIN,cn.bing.com,🎯 全球直连
   - PROCESS-NAME,cfnat-android-arm64,🎯 全球直连
   - PROCESS-NAME,cfnat-darwin-amd64,🎯 全球直连
   - PROCESS-NAME,cfnat-darwin-arm64,🎯 全球直连
